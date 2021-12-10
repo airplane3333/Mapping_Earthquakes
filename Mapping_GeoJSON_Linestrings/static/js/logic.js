@@ -7,7 +7,11 @@ let light = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}
   tileSize: 512,
   maxZoom: 18,
   zoomOffset: -1,
+<<<<<<< HEAD
   id: "mapbox/outdoors-v11",
+=======
+  id: "mapbox/streets-v11",
+>>>>>>> earthquakes_past7days
   accessToken: api_key
 });
 
@@ -24,7 +28,11 @@ attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a h
 
 //creating a base layer that holds both tilelayers above.
 let baseMaps = {
+<<<<<<< HEAD
   street: streets,
+=======
+  street: light,
+>>>>>>> earthquakes_past7days
   dark: dark
 }
 
@@ -32,11 +40,16 @@ let baseMaps = {
 let map = L.map("mapid", {
   center:[30, 30],
   zoom: 2,
+<<<<<<< HEAD
 
+=======
+  layers:[light]
+>>>>>>> earthquakes_past7days
 })
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
 
+<<<<<<< HEAD
 
 let airportData = "https://raw.githubusercontent.com/airplane3333/Mapping_Earthquakes/main/majorAirports.json"
 //let airportData = "majorAiports.json"
@@ -49,6 +62,9 @@ d3.json(airportData).then(function(data) {
     onEachFeature: function(feature, layer) {
       layer.bindPopup("Airport Code: "  + feature.properties.faa + "<hr>" + feature.properties.city + ", " + feature.properties.country)
 
+=======
+// Add GeoJSON data.
+>>>>>>> earthquakes_past7days
 let torontoData = "https://raw.githubusercontent.com/airplane3333/Mapping_Earthquakes/main/torontoRoutes.json"
 //let airportData = "https://raw.githubusercontent.com/airplane3333/Mapping_Earthquakes/main/majorAirports.json"
 //let airportData = "majorAiports.json"
@@ -66,7 +82,10 @@ d3.json(torontoData).then(function(data) {
     style: style,
     onEachFeature: function(feature,layer) {
       layer.bindPopup("<h3>Airline: </h3>" + feature.properties.airline)
+<<<<<<< HEAD
 
+=======
+>>>>>>> earthquakes_past7days
     }
   }).addTo(map);
 });
@@ -83,8 +102,11 @@ d3.json(torontoData).then(function(data) {
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> earthquakes_past7days
 //notes from part 13.5
 // adding geoJson data to the map and a pop-up using pointToLayer
 // L.geoJson(sanFranAirport, {
