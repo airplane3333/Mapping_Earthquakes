@@ -25,7 +25,7 @@ attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a h
 //creating a base layer that holds both tilelayers above.
 let baseMaps = {
   "Streets": streets,
-  "Sattelite Streets": satelliteStreets
+  "Sattelite": satelliteStreets
 }
 
 // creat the map object not using setVeiws
