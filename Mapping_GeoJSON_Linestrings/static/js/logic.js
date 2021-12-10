@@ -2,12 +2,12 @@
 //let map = L.map('mapid').setView([30, 30], 2);
 
 //adding a tilelayer for map with parameters. 
-let streets = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+let light = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
   attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
   tileSize: 512,
   maxZoom: 18,
   zoomOffset: -1,
-  id: "mapbox/outdoors-v11",
+  id: "mapbox/streets-v11",
   accessToken: api_key
 });
 
@@ -24,7 +24,7 @@ attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a h
 
 //creating a base layer that holds both tilelayers above.
 let baseMaps = {
-  street: streets,
+  street: light,
   dark: dark
 }
 
@@ -32,25 +32,42 @@ let baseMaps = {
 let map = L.map("mapid", {
   center:[30, 30],
   zoom: 2,
-  layers:[streets]
+  layers:[light]
 })
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
 
 // Add GeoJSON data.
-let airportData = "https://raw.githubusercontent.com/airplane3333/Mapping_Earthquakes/main/majorAirports.json"
+let torontoData = "https://raw.githubusercontent.com/airplane3333/Mapping_Earthquakes/main/torontoRoutes.json"
+//let airportData = "https://raw.githubusercontent.com/airplane3333/Mapping_Earthquakes/main/majorAirports.json"
 //let airportData = "majorAiports.json"
 
+//creating style for the lines
+let style = {
+  color: "purple",
+  weight: 1
+}
+
+
 // Grabbing our GeoJSON data.
-d3.json(airportData).then(function(data) {
-  console.log(data);
-  // creating a geoJSON layer with the retrieved data.
+d3.json(torontoData).then(function(data) {
   L.geoJSON(data, {
-    onEachFeature: function(feature, layer) {
-      layer.bindPopup("Airport Code: "  + feature.properties.faa + "<hr>" + feature.properties.city + ", " + feature.properties.country)
+    style: style,
+    onEachFeature: function(feature,layer) {
+      layer.bindPopup("<h3>Airline: </h3>" + feature.properties.airline)
     }
   }).addTo(map);
 });
+
+// d3.json(airportData).then(function(data) {
+//   //console.log(data);
+//   // creating a geoJSON layer with the retrieved data.
+//   L.geoJSON(data, {
+//     onEachFeature: function(feature, layer) {
+//       layer.bindPopup("Airport Code: "  + feature.properties.faa + "<hr>" + feature.properties.city + ", " + feature.properties.country)
+//     }
+//   }).addTo(map);
+// });
 
 
 
