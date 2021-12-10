@@ -2,20 +2,12 @@
 //let map = L.map('mapid').setView([30, 30], 2);
 
 //adding a tilelayer for map with parameters. 
-<<<<<<< HEAD
 let streets = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-=======
-let light = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
->>>>>>> earthquakes_past7days
   attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
   tileSize: 512,
   maxZoom: 18,
   zoomOffset: -1,
-<<<<<<< HEAD
   id: "mapbox/outdoors-v11",
-=======
-  id: "mapbox/streets-v11",
->>>>>>> earthquakes_past7days
   accessToken: api_key
 });
 
@@ -32,11 +24,7 @@ attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a h
 
 //creating a base layer that holds both tilelayers above.
 let baseMaps = {
-<<<<<<< HEAD
   street: streets,
-=======
-  street: light,
->>>>>>> earthquakes_past7days
   dark: dark
 }
 
@@ -44,17 +32,12 @@ let baseMaps = {
 let map = L.map("mapid", {
   center:[30, 30],
   zoom: 2,
-<<<<<<< HEAD
   layers:[streets]
-=======
-  layers:[light]
->>>>>>> earthquakes_past7days
 })
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
 
 // Add GeoJSON data.
-<<<<<<< HEAD
 let airportData = "https://raw.githubusercontent.com/airplane3333/Mapping_Earthquakes/main/majorAirports.json"
 //let airportData = "majorAiports.json"
 
@@ -65,42 +48,10 @@ d3.json(airportData).then(function(data) {
   L.geoJSON(data, {
     onEachFeature: function(feature, layer) {
       layer.bindPopup("Airport Code: "  + feature.properties.faa + "<hr>" + feature.properties.city + ", " + feature.properties.country)
-=======
-let torontoData = "https://raw.githubusercontent.com/airplane3333/Mapping_Earthquakes/main/torontoRoutes.json"
-//let airportData = "https://raw.githubusercontent.com/airplane3333/Mapping_Earthquakes/main/majorAirports.json"
-//let airportData = "majorAiports.json"
-
-//creating style for the lines
-let style = {
-  color: "purple",
-  weight: 1
-}
-
-
-// Grabbing our GeoJSON data.
-d3.json(torontoData).then(function(data) {
-  L.geoJSON(data, {
-    style: style,
-    onEachFeature: function(feature,layer) {
-      layer.bindPopup("<h3>Airline: </h3>" + feature.properties.airline)
->>>>>>> earthquakes_past7days
     }
   }).addTo(map);
 });
 
-<<<<<<< HEAD
-=======
-// d3.json(airportData).then(function(data) {
-//   //console.log(data);
-//   // creating a geoJSON layer with the retrieved data.
-//   L.geoJSON(data, {
-//     onEachFeature: function(feature, layer) {
-//       layer.bindPopup("Airport Code: "  + feature.properties.faa + "<hr>" + feature.properties.city + ", " + feature.properties.country)
-//     }
-//   }).addTo(map);
-// });
-
->>>>>>> earthquakes_past7days
 
 
 //notes from part 13.5

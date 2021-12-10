@@ -2,94 +2,78 @@
 //let map = L.map('mapid').setView([30, 30], 2);
 
 //adding a tilelayer for map with parameters. 
-<<<<<<< HEAD
 let streets = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-=======
-let light = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
->>>>>>> earthquakes_past7days
   attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
   tileSize: 512,
   maxZoom: 18,
   zoomOffset: -1,
-<<<<<<< HEAD
-  id: "mapbox/outdoors-v11",
-=======
   id: "mapbox/streets-v11",
->>>>>>> earthquakes_past7days
   accessToken: api_key
 });
 
 //adding another tilelayer to the map, this is dar view
 // We create the dark view tile layer that will be an option for our map.
-let dark = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+let satelliteStreets = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
     tileSize: 512,
     maxZoom: 18,
     zoomOffset: -1,
-    id: "mapbox/dark-v10",
+    id: "mapbox/satellite-streets-v11",
     accessToken: api_key
 });
 
 //creating a base layer that holds both tilelayers above.
 let baseMaps = {
-<<<<<<< HEAD
-  street: streets,
-=======
-  street: light,
->>>>>>> earthquakes_past7days
-  dark: dark
+  "Streets": streets,
+  "Sattelite Streets": satelliteStreets
 }
 
 // creat the map object not using setVeiws
 let map = L.map("mapid", {
-  center:[30, 30],
-  zoom: 2,
-<<<<<<< HEAD
+  center:[43.7, -79.3],
+  zoom: 11,
   layers:[streets]
-=======
-  layers:[light]
->>>>>>> earthquakes_past7days
 })
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
 
 // Add GeoJSON data.
-<<<<<<< HEAD
-let airportData = "https://raw.githubusercontent.com/airplane3333/Mapping_Earthquakes/main/majorAirports.json"
-//let airportData = "majorAiports.json"
-
-// Grabbing our GeoJSON data.
-d3.json(airportData).then(function(data) {
-  console.log(data);
-  // creating a geoJSON layer with the retrieved data.
-  L.geoJSON(data, {
-    onEachFeature: function(feature, layer) {
-      layer.bindPopup("Airport Code: "  + feature.properties.faa + "<hr>" + feature.properties.city + ", " + feature.properties.country)
-=======
-let torontoData = "https://raw.githubusercontent.com/airplane3333/Mapping_Earthquakes/main/torontoRoutes.json"
+let yyzHoods = "https://raw.githubusercontent.com/airplane3333/Mapping_Earthquakes/main/torontoNeighborhoods.json"
+//let torontoData = "https://raw.githubusercontent.com/airplane3333/Mapping_Earthquakes/main/torontoRoutes.json"
 //let airportData = "https://raw.githubusercontent.com/airplane3333/Mapping_Earthquakes/main/majorAirports.json"
 //let airportData = "majorAiports.json"
 
 //creating style for the lines
 let style = {
   color: "purple",
-  weight: 1
+  weight: 1, 
+  closePopupOnClick: true,
+  opacity: .7,
+  fillColor: "blue",
 }
 
 
 // Grabbing our GeoJSON data.
-d3.json(torontoData).then(function(data) {
-  L.geoJSON(data, {
-    style: style,
-    onEachFeature: function(feature,layer) {
-      layer.bindPopup("<h3>Airline: </h3>" + feature.properties.airline)
->>>>>>> earthquakes_past7days
+d3.json(yyzHoods).then(function(data) {
+  console.log(data);
+    L.geoJSON(data, {
+      style: style,
+      onEachFeature: function(feature, layer) {
+        layer.bindPopup("Neighborhood: " + feature.properties.AREA_NAME)
     }
   }).addTo(map);
 });
 
-<<<<<<< HEAD
-=======
+// this is a function that maps lines on a map with a var for style, this is for JSON data
+// d3.json(torontoData).then(function(data) {
+//   L.geoJSON(data, {
+//     style: style,
+//     onEachFeature: function(feature,layer) {
+//       layer.bindPopup("<h3>Airline: </h3>" + feature.properties.airline)
+//     }
+//   }).addTo(map);
+// });
+
 // d3.json(airportData).then(function(data) {
 //   //console.log(data);
 //   // creating a geoJSON layer with the retrieved data.
@@ -100,7 +84,6 @@ d3.json(torontoData).then(function(data) {
 //   }).addTo(map);
 // });
 
->>>>>>> earthquakes_past7days
 
 
 //notes from part 13.5
