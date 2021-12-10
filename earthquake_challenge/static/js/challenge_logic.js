@@ -20,6 +20,16 @@ attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a h
     id: "mapbox/satellite-streets-v11",
     accessToken: api_key
 });
+//adding another tilelayer to the map, this is dar view
+// We create the dark view tile layer that will be an option for our map.
+let dark = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
+    tileSize: 512,
+    maxZoom: 18,
+    zoomOffset: -1,
+    id: "mapbox/navigation-night-v1",
+    accessToken: api_key
+});
 
 // Create the map object with center, zoom level and default layer.
 let map = L.map('mapid', {
@@ -31,7 +41,8 @@ let map = L.map('mapid', {
 // Create a base layer that holds all three maps.
 let baseMaps = {
   "Streets": streets,
-  "Satellite": satelliteStreets
+  "Satellite": satelliteStreets,
+  "Night": dark,
 };
 
 // 1. Add a 2nd layer group for the tectonic plate data.
@@ -61,7 +72,7 @@ function techStyle(feature) {
   return {
     //fillColor: ,
     color: "red" ,
-    weight: .5,
+    weight: 1.5,
   };
 }
 
